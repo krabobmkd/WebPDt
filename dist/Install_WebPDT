@@ -1,0 +1,47 @@
+; $VER: Install_WebPDT 45.1
+;
+; Amiga Installer script for webp.datatype: copies the datatype class and
+; its descriptor (+ icon), then asks for a reboot.
+
+(set @default-dest "")
+
+; any copy error ends up here
+(onerror
+    (message "\nCopy failed: webp.datatype is NOT installed.\n\n"
+             "Check that SYS: is not write protected and has free space.")
+)
+
+(if (askbool
+        (prompt "\nThis installs a free WebP picture datatype\n"
+                "for 68020 AmigaOS.\n\n"
+                "It is BSD licensed, like Google's libwebp it is\n"
+                "built on. We will not ask money for porting a short\n"
+                "open source library to a 40 year old OS used by a\n"
+                "handful of people.\n\n"
+                "Install it now?")
+        (help "Copies webp.datatype to SYS:Classes/DataTypes/\n"
+              "and the WebP descriptor to SYS:Devs/DataTypes/.")
+        (choices "Install" "Cancel")
+        (default 1)
+    )
+    (
+        (copyfiles
+            (source "Devs/DataTypes/WebP")
+            (dest "SYS:Devs/DataTypes")
+            (infos)
+            (nogauge)
+        )
+        (copyfiles
+            (source "Classes/DataTypes/webp.datatype")
+            (dest "SYS:Classes/DataTypes")
+            (nogauge)
+        )
+        (if (AND (exists "SYS:Devs/DataTypes/WebP")
+                 (exists "SYS:Classes/DataTypes/webp.datatype"))
+            (message "\nCopy OK.\n\nPlease reboot your Amiga to use the WebP datatype.")
+            (message "\nCopy failed: webp.datatype is NOT installed.")
+        )
+    )
+)
+
+(exit (quiet))

@@ -1,0 +1,10 @@
+/* generated from src/libversion.h.in by cmake - do not edit */
+#ifndef WEBPDT_LIBVERSION_H
+#define WEBPDT_LIBVERSION_H
+
+#define WEBPDT_VERSION  @WEBPDT_VERSION@
+#define WEBPDT_REVISION @WEBPDT_REVISION@
+#define WEBPDT_VERSTR   "@WEBPDT_VERSION@.@WEBPDT_REVISION@"
+#define WEBPDT_DATE     "@WEBPDT_DATE@"
+
+#endif

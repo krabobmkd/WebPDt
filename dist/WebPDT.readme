@@ -1,0 +1,73 @@
+Short:        WebP picture datatype, free (BSD), 68020
+Author:       krb
+Uploader:     victorien.ferry@free.fr
+Type:         util/dtype
+Version:      45.1
+Architecture: m68k-amigaos >= 3.0.0
+Requires:     68020+, picture.datatype v43+
+Distribution: Aminet
+
+webp.datatype
+=============
+
+A picture datatype for WebP images. Once it's installed, every
+datatypes-aware program (MultiView, web browsers, paint programs, image
+viewers...) can load WebP pictures.
+
+It is free and BSD licensed, like Google's libwebp it is built on. We will
+not ask money for porting a short open source library to a 40 year old OS
+used by a handful of people.
+
+Features
+--------
+ - lossy (VP8) and lossless (VP8L) WebP
+ - alpha channel (32-bit picture with alpha)
+ - animated WebP: the first frame is shown
+ - 24-bit output. On 8-bit and lower screens, the system's
+   picture.datatype does the remapping and dithering, like for any other
+   picture format.
+ - with picture.datatype V47 (AmigaOS 3.2), the picture is decoded
+   straight into picture.datatype's own buffer, so no extra copy is
+   needed
+ - decoding is all integer code, so no FPU is needed
+ - reentrant: several programs can load WebP pictures at the same time
+
+Requirements
+------------
+ - AmigaOS 3.0 or higher
+ - 68020 CPU or higher
+ - picture.datatype v43 or higher. It comes with AmigaOS 3.1.4, 3.2, 3.5
+   and 3.9, and with the Picasso96 and CyberGraphX packages.
+
+Installation
+------------
+Double-click Install_WebPDT, then reboot.
+
+Or by hand:
+
+   Copy Classes/DataTypes/webp.datatype SYS:Classes/DataTypes/
+   Copy Devs/DataTypes/WebP Devs/DataTypes/WebP.info SYS:Devs/DataTypes/
+
+and reboot, or run: AddDataTypes DEVS:DataTypes/WebP REFRESH
+
+Note: the descriptor is named "WebP", like the one of other WebP
+datatypes, so installing this one replaces theirs. Keep a copy of your
+old DEVS:DataTypes/WebP if you want to go back.
+
+Testing
+-------
+webpdtinfo is a small CLI tool that loads a picture through
+datatypes.library and prints what it got:
+
+   webpdtinfo picture.webp
+   webpdtinfo picture.webp SAVE RAM:picture.ilbm
+
+Licence
+-------
+webp.datatype: BSD 3-clause licence, see LICENSE.
+libwebp: Copyright Google Inc., BSD licence plus an additional patent
+grant, see libwebp-COPYING and libwebp-PATENTS.
+
+History
+-------
+45.1  first release

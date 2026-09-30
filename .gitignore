@@ -53,3 +53,17 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# --- webp.datatype ---
+# cmake build dirs
+build*/
+# FS-UAE shared-folder metadata
+*.uaem
+# libwebp: external, cloned locally (see CMakeLists.txt)
+libwebp-main/
+# third-party shareware kept locally for reference only: never publish
+WarpWebPdt/
+# Claude Code local files
+.claude/
+CLAUDE.md
+CLAUDE.local.md
